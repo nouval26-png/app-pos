@@ -7,18 +7,24 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: kivy/buildozer:latest
+      options: --user root
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Fix permissions
+      run: |
+        chown -R root:root .
 
     - name: Build with Buildozer
-      uses: kivy/buildozer-action@master
-      id: buildozer
-      with:
-        command: buildozer android debug
+      run: |
+        buildozer -v android debug
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
       with:
         name: package
-        path: ${{ steps.buildozer.outputs.filename }}
+        path: bin/*.apk
