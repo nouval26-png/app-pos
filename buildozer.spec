@@ -1,6 +1,9 @@
 [app]
 
 title = Toko Humaira POS
+android.api = 33
+android.min_api = 21
+
 
 package.name = tokohumaira
 
