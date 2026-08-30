@@ -4,7 +4,7 @@ title = Toko Humaira POS
 
 package.name = tokohumaira
 
-android.ndk = 25b
+android.ndk_version = 25b
 
 package.domain = org.pos
 
