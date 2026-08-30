@@ -4,7 +4,7 @@ title = Toko Humaira POS
 
 package.name = tokohumaira
 
-android.ndk = 25b
+android.ndk_version = 25b
 
 package.domain = org.pos
 
@@ -17,7 +17,7 @@ version = 0.1
 # Menyetujui lisensi Android SDK secara otomatis
 android.accept_sdk_license = True
 
-requirements = python3==3.11,kivy,kivymd
+requirements = python3==3,kivy,kivymd
 
 
 orientation = portrait
