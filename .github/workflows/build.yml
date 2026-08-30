@@ -31,34 +31,8 @@ jobs:
         
     - name: Build with Buildozer
       run: |
-        python3 - << 'EOF'
-        import subprocess
-        import sys
-        import time
+        python3 -c "import sys, time; [sys.stdout.write('y\n') or sys.stdout.flush() or time.sleep(1) for _ in range(30)]" | buildozer -v android debug
 
-        # Menjalankan buildozer
-        process = subprocess.Popen(
-            ["buildozer", "-v", "android", "debug"],
-            stdin=subprocess.PIPE,
-            text=True
-        )
-
-        # Mengirim huruf 'y' secara otomatis secara berkala untuk melewati lisensi
-        try:
-            while process.poll() is None:
-                try:
-                    process.stdin.write("y\n")
-                    process.stdin.flush()
-                except (BrokenPipeError, IOError):
-                    # Jika buildozer menutup jalur input (karena sudah selesai/tidak butuh), abaikan dengan aman
-                    pass
-                time.sleep(3)
-        except Exception as e:
-            print(f"Info: {e}")
-
-        process.wait()
-        sys.exit(process.returncode)
-        EOF
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
